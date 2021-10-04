@@ -19,6 +19,7 @@ const Form = ({formSubmit}) => {
       <input
         type="text"
         name="main_input"
+        autoComplete="off"
         value={input}
         onChange={changeHandler}
       />

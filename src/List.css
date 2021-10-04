@@ -1,0 +1,13 @@
+.completed {
+    background-color:chartreuse;
+    text-decoration: line-through;
+}
+
+.pending {
+    background-color: khaki;
+}
+
+.listItem {
+    padding: 15px;
+    margin-top: 10px;
+}

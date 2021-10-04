@@ -2,7 +2,7 @@ import React from "react";
 
 const ListItem = (props) => {
     return (
-        <li>
+        <li className={props.className}>
             {props.children}
         </li>
     )

@@ -37,9 +37,9 @@ const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
 
   return (
     <ul>
-      {todos.map((todo, index) =>
+      {todos.map((todo) =>
         updateId === todo.id ? (
-          <form key={index} onSubmit={submitHandlerForm} className='updateForm'>
+          <form key={todo.id} onSubmit={submitHandlerForm} className='updateForm'>
             <input
               type="text"
               value={updateInput}
@@ -50,7 +50,7 @@ const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
           </form>
         ) : (
           <ListItem
-            key={index}
+            key={todo.id}
             className={todo.completed ? "completed listItem" : "pending listItem"}
           >
             <h1>{todo.content}</h1>

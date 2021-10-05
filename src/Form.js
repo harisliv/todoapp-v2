@@ -23,7 +23,7 @@ const Form = ({formSubmit}) => {
         value={input}
         onChange={changeHandler}
       />
-      <button type="submit">Submit!</button>
+      <button disabled={input===''} type="submit">Submit!</button>
     </form>
   );
 };

@@ -1,18 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 
-const Filter = ({filterTodo}) => {
-
-  const [checked, setChecked] = useState('all');
-    
-    const clickHandler = (event) => {
-        console.log(event.target.value)
-        filterTodo(event.target.value);
-    }
-
-    const changeHandler = (event) => {
-      setChecked(event.target.value);
-    }
-
+const Filter = ({checked, onChange}) => {
   return (
     <div>
       <input
@@ -20,8 +8,7 @@ const Filter = ({filterTodo}) => {
         id="all"
         name="filter"
         value="all"
-        onClick={clickHandler}
-        onChange={changeHandler}
+        onChange={onChange}
         checked={checked === 'all'}
       />
       <label htmlFor="all">Display All</label>
@@ -30,8 +17,7 @@ const Filter = ({filterTodo}) => {
         id="pending"
         name="filter"
         value="pending"
-        onClick={clickHandler}
-        onChange={changeHandler}
+        onChange={onChange}
         checked={checked === 'pending'}
       />
       <label htmlFor="pending">Display Pending</label>
@@ -40,8 +26,7 @@ const Filter = ({filterTodo}) => {
         id="done"
         name="filter"
         value="done"
-        onClick={clickHandler}
-        onChange={changeHandler}
+        onChange={onChange}
         checked={checked === 'done'}
       />
       <label htmlFor="done">Display Done</label>

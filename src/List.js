@@ -3,55 +3,55 @@ import ListItem from "./components/ListItem";
 import "./List.css";
 
 const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
-  const [updateMode, setUpdateMode] = useState(false);
-  const [editID, setEditID] = useState("");
-  const [input, setInput] = useState("");
+  const [updateId, setUpdateID] = useState("");
+  const [updateInput, setUpdateInput] = useState("");
+  const [completed, setCompleted] = useState(false);
 
-  const showUpdateForm = (id, content) => {
-    !updateMode ? setUpdateMode(true) : setUpdateMode(false);
-    setEditID(id);
-    setInput(content);
+  const deleteHandlerTodo = (id) => {
+    deleteTodo(id);
   };
 
-  const deleteHandler = (id) => {
-    deleteTodo(id);
-    // console.log(id);
+  const showUpdateForm = (id, content) => {
+    setUpdateID(id);
+    setUpdateInput(content);
   };
 
   const changeHandlerForm = (event) => {
-    setInput(event.target.value);
+    setUpdateInput(event.target.value);
   };
 
-  const submitHandler = (event) => {
+  const submitHandlerForm = (event) => {
     event.preventDefault();
-    updateTodo(editID, input);
-    setInput("");
-    setEditID("");
+    updateTodo(updateId, updateInput);
+    setUpdateInput("");
+    setUpdateID("");
   };
 
-  const changeHandlerCheckbox = (id) => {
+  const clickHandlerCheckbox = (id) => {
     completeTodo(id);
+  };
+
+  const changeHandlerCheckbox = (event) => {
+    setCompleted(event.target.value);
   };
 
   return (
     <ul>
       {todos.map((todo, index) =>
-        editID === todo.id ? (
-          <form key={index} onSubmit={submitHandler}>
+        updateId === todo.id ? (
+          <form key={index} onSubmit={submitHandlerForm} className='updateForm'>
             <input
               type="text"
-              value={input}
+              value={updateInput}
               autoComplete="off"
               onChange={changeHandlerForm}
             />
-            <button type="submit">Submit!</button>
+            <button disabled={updateInput === ''} type="submit">Submit!</button>
           </form>
         ) : (
           <ListItem
             key={index}
-            className={
-              todo.completed ? "completed listItem" : "pending listItem"
-            }
+            className={todo.completed ? "completed listItem" : "pending listItem"}
           >
             <h1>{todo.content}</h1>
             <button
@@ -62,13 +62,16 @@ const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
             </button>
             <button
               disabled={todo.completed}
-              onClick={() => deleteHandler(todo.id)}
+              onClick={() => deleteHandlerTodo(todo.id)}
             >
               Delete!
             </button>
             <input
               type="checkbox"
-              onChange={() => changeHandlerCheckbox(todo.id)}
+              onChange={changeHandlerCheckbox}
+              checked={todo.completed}
+              value={completed}
+              onClick={() => clickHandlerCheckbox(todo.id)}
             />
           </ListItem>
         )

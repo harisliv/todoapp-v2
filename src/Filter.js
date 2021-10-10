@@ -9,7 +9,7 @@ const Filter = ({checked, onChange}) => {
         name="filter"
         value="all"
         onChange={onChange}
-        checked={checked === 'all'}
+        checked={checked === 'all' || checked === 'search'}
       />
       <label htmlFor="all">Display All</label>
       <input

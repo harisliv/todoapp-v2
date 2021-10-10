@@ -22,6 +22,7 @@ const Form = ({formSubmit}) => {
         autoComplete="off"
         value={input}
         onChange={changeHandler}
+        placeholder="Add Todo"
       />
       <button disabled={input===''} type="submit">Submit!</button>
     </form>

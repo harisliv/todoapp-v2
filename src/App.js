@@ -3,10 +3,12 @@ import "./App.css";
 import Filter from "./Filter";
 import Form from "./Form";
 import List from "./List";
+import Search from "./Search";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [checked, setChecked] = useState("all");
+  const [search, setSearch] = useState('');
 
   const changeFilterHandler = (event) => {
     setChecked(event.target.value);
@@ -40,19 +42,31 @@ function App() {
   };
 
   const filterTodos = (filter) => {
-    if (filter === "done") {
-      const doneArr = todos.filter((todo) => todo.completed === true);
+    switch (filter) {
+      case "done":
+        const doneArr = todos.filter((todo) => todo.completed === true);
       return doneArr;
-    } else if (filter === "pending") {
-      const pendingArr = todos.filter((todo) => todo.completed === false);
-      return pendingArr;
-    } else if (filter === "all") {
-      return todos;
+      case "pending":
+        const pendingArr = todos.filter((todo) => todo.completed === false);
+        return pendingArr;
+      case "search":
+        const searchArr = todos.filter((todo) => todo.content.includes(search))
+        return searchArr
+      case "all":
+        return todos;
     }
   };
 
+  
+
+  const changeSearchHandler = (event) => {
+    setSearch(event.target.value);
+    setChecked("search");
+  }
+
   return (
     <div className="App">
+      <Search value={search} onChange={changeSearchHandler} />
       <Filter onChange={changeFilterHandler} checked={checked} />
       <br />
       <Form formSubmit={formSubmitHandler} />

@@ -12,6 +12,7 @@ function App() {
 
   const changeFilterHandler = (event) => {
     setChecked(event.target.value);
+    setSearch('');
   };
 
   const formSubmitHandler = (input) => {
@@ -41,28 +42,31 @@ function App() {
     setTodos((prev) => prev.map((todo) => (todo.id === id ? newTodo : todo)));
   };
 
-  const filterTodos = (filter) => {
-    switch (filter) {
-      case "done":
-        const doneArr = todos.filter((todo) => todo.completed === true);
-      return doneArr;
-      case "pending":
-        const pendingArr = todos.filter((todo) => todo.completed === false);
-        return pendingArr;
-      case "search":
-        const searchArr = todos.filter((todo) => todo.content.includes(search))
-        return searchArr
-      case "all":
-        return todos;
-    }
-  };
-
-  
-
   const changeSearchHandler = (event) => {
     setSearch(event.target.value);
     setChecked("search");
   }
+
+  const filterTodos = (filter) => {
+    let filteredArr;
+    switch (filter) {
+      case "done":
+        filteredArr = todos.filter((todo) => todo.completed === true);
+        break;
+      case "pending":
+        filteredArr = todos.filter((todo) => todo.completed === false);
+        break;
+      case "search":
+        filteredArr = todos.filter((todo) => todo.content.includes(search))
+        break;
+      case "all":
+        filteredArr = [...todos];
+        break;
+      default:
+        console.log("error");
+    }
+    return filteredArr;
+  };
 
   return (
     <div className="App">

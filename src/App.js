@@ -59,11 +59,8 @@ function App() {
       case "search":
         filteredArr = todos.filter((todo) => todo.content.includes(search))
         break;
-      case "all":
-        filteredArr = [...todos];
-        break;
       default:
-        console.log("error");
+        filteredArr = [...todos];
     }
     return filteredArr;
   };

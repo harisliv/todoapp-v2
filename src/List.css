@@ -1,16 +1,10 @@
-.completed {
-    background-color:chartreuse;
+.completed label{
+    /* background-color:chartreuse; */
     text-decoration: line-through;
 }
 
-.pending {
-    background-color: khaki;
-}
 
-.listItem, .updateForm {
-    padding: 15px;
-    margin-top: 10px;
-}
+
 
 .updateForm {
     background-color: chocolate;

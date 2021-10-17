@@ -14,16 +14,25 @@ const Form = ({formSubmit}) => {
         setInput('');
     }
 
+    const handleKeyPress = (event) => {
+      if (event.keyCode === 13) {
+        submitHandler();
+      }
+    }
+
   return (
-    <form onSubmit={submitHandler}>
+    <form className="newTodoForm" onSubmit={submitHandler}>
+      <i class="fas fa-sort-down selectAllIcon"></i>
       <input
         type="text"
         name="main_input"
         autoComplete="off"
         value={input}
         onChange={changeHandler}
+        onKeyPress={handleKeyPress}
+        className="mainInput"
+        placeholder="What needs to be done?"
       />
-      <button disabled={input===''} type="submit">Submit!</button>
     </form>
   );
 };

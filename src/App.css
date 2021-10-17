@@ -1,38 +1,136 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  width: 550px;
+  /* border: 3px solid #eb0404; */
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+  margin-top: 150px;
 }
 
-.App-link {
-  color: #61dafb;
+.newTodoForm {
+  flex: 1 1 500px;
+  overflow: hidden;
+  padding: 10px;
+  box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
+  display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.filterTodo {
+  padding: 15px 0;
+}
+
+.todoList {
+  flex: 1 1 500px;
+  margin: 0;
+}
+
+.filterTodo {
+  flex: 1 1 500px;
+}
+
+.mainInput {
+  width: 100%;
+  border: none;
+  height: 50px;
+  font-size: 24px;
+  background: rgba(0, 0, 0, 0.003);
+  padding-left: 10px;
+}
+
+.mainInput:focus {
+  outline: none;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: rgba(0, 0, 0, 0.003);
+  box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
+  padding: 10px 0 13px 0;
+  border-bottom: 1px solid #ededed;
+}
+
+.completedCheckbox {
+  display: none;
+}
+
+.contentTitle {
+  flex-basis: 370px;
+  word-break: break-all;
+  text-align: left;
+  padding: 0 15px;
+  margin: 0;
+}
+
+.deleteIcon,
+.editIcon {
+  flex-basis: 10px;
+  margin: 0 8px;
+  font-size: 22px;
+}
+
+.selectAllIcon {
+  flex-basis: 10px;
+  margin: 0 8px;
+  font-size: 29px;
+  margin-top: 6px;
+}
+
+.deleteIcon {
+  color: red;
+}
+
+.editIcon {
+  color: purple;
+}
+
+.customCheckBox {
+  flex-basis: 70px;
+}
+
+.customCheckBox div {
+  width: 23px;
+  height: 23px;
+  display: inline-block;
+  border: 3px solid #1abc9c;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.customCheckBox i {
+  font-size: 15px;
+  opacity: 0;
+  color: #1abc9c;
+}
+.customCheckBox:hover div {
+  background: #b4f5e85d;
+}
+input:checked + .customCheckBox i {
+  opacity: 1;
+}
+
+.footer {
+  display: flex;
+  font-size: 15px;
+  justify-content: space-around;
+  align-items: center;
+  width: 500px;
+}
+
+.footer-item {
+  flex: 1;
+}
+
+.footer-item.filterTodo{
+  flex:3;
+}
+
+.clearCompleted {
+  flex:2;
 }

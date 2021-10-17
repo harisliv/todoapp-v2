@@ -6,6 +6,7 @@ const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
   const [updateId, setUpdateID] = useState("");
   const [updateInput, setUpdateInput] = useState("");
   const [completed, setCompleted] = useState(false);
+  const [showIcons, setShowIcons] = useState("");
 
   const deleteHandlerTodo = (id) => {
     deleteTodo(id);
@@ -36,43 +37,60 @@ const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
   };
 
   return (
-    <ul>
+    <ul className="todoList">
       {todos.map((todo) =>
         updateId === todo.id ? (
-          <form key={todo.id} onSubmit={submitHandlerForm} className='updateForm'>
+          <form
+            key={todo.id}
+            onSubmit={submitHandlerForm}
+            className="updateForm"
+          >
             <input
               type="text"
               value={updateInput}
               autoComplete="off"
               onChange={changeHandlerForm}
             />
-            <button disabled={updateInput === ''} type="submit">Submit!</button>
+            <button disabled={updateInput === ""} type="submit">
+              Submit!
+            </button>
           </form>
         ) : (
           <ListItem
+            onMouseEnter={() => setShowIcons(todo.id)}
+            onMouseLeave={() => setShowIcons("")}
             key={todo.id}
-            className={todo.completed ? "completed listItem" : "pending listItem"}
+            className={
+              todo.completed ? "completed listItem" : "pending listItem"
+            }
           >
-            <h1>{todo.content}</h1>
-            <button
-              disabled={todo.completed}
-              onClick={() => showUpdateForm(todo.id, todo.content)}
-            >
-              Update!
-            </button>
-            <button
-              disabled={todo.completed}
-              onClick={() => deleteHandlerTodo(todo.id)}
-            >
-              Delete!
-            </button>
             <input
+              id={todo.id}
+              className="completedCheckbox"
               type="checkbox"
               onChange={changeHandlerCheckbox}
               checked={todo.completed}
               value={completed}
               onClick={() => clickHandlerCheckbox(todo.id)}
             />
+            <label for={todo.id} className="customCheckBox">
+              <div>
+                <i class="fa fa-check"></i>
+              </div>
+            </label>
+            <label className="contentTitle">{todo.content}</label>
+            {todo.id === showIcons && (
+              <i
+                className="fas fa-edit editIcon"
+                onClick={() => showUpdateForm(todo.id, todo.content)}
+              ></i>
+            )}
+            {todo.id === showIcons && (
+              <i
+                className="far fa-window-close deleteIcon"
+                onClick={() => deleteHandlerTodo(todo.id)}
+              ></i>
+            )}
           </ListItem>
         )
       )}

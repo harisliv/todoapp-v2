@@ -53,8 +53,6 @@ function App() {
 
   return (
     <div className="App">
-      <Filter onChange={changeFilterHandler} checked={checked} />
-      <br />
       <Form formSubmit={formSubmitHandler} />
       <List
         todos={filterTodos(checked)}
@@ -62,6 +60,11 @@ function App() {
         updateTodo={updateTodo}
         completeTodo={completeTodo}
       />
+      <div className="footer">
+        <label className="itemsLeft footer-item">1 items left</label>
+        <Filter onChange={changeFilterHandler} checked={checked} />
+        <label className="clearCompleted footer-item">Clear completed</label>
+      </div>
     </div>
   );
 }

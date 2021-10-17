@@ -2,7 +2,7 @@ import React from "react";
 
 const Filter = ({checked, onChange}) => {
   return (
-    <div>
+    <div className="filterTodo footer-item">
       <input
         type="radio"
         id="all"
@@ -11,7 +11,7 @@ const Filter = ({checked, onChange}) => {
         onChange={onChange}
         checked={checked === 'all'}
       />
-      <label htmlFor="all">Display All</label>
+      <label htmlFor="all">All</label>
       <input
         type="radio"
         id="pending"
@@ -20,7 +20,7 @@ const Filter = ({checked, onChange}) => {
         onChange={onChange}
         checked={checked === 'pending'}
       />
-      <label htmlFor="pending">Display Pending</label>
+      <label htmlFor="pending">Active</label>
       <input
         type="radio"
         id="done"
@@ -29,7 +29,7 @@ const Filter = ({checked, onChange}) => {
         onChange={onChange}
         checked={checked === 'done'}
       />
-      <label htmlFor="done">Display Done</label>
+      <label htmlFor="done">Completed</label>
     </div>
   );
 };

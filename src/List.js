@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ListItem from "./components/ListItem";
-import "./List.css";
+import "./App.css";
 
 const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
   const [updateId, setUpdateID] = useState("");
@@ -21,13 +21,6 @@ const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
     setUpdateInput(event.target.value);
   };
 
-  const submitHandlerForm = (event) => {
-    event.preventDefault();
-    updateTodo(updateId, updateInput);
-    setUpdateInput("");
-    setUpdateID("");
-  };
-
   const clickHandlerCheckbox = (id) => {
     completeTodo(id);
   };
@@ -36,24 +29,32 @@ const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
     setCompleted(event.target.value);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      updateTodo(updateId, updateInput);
+      setUpdateInput("");
+      setUpdateID("");
+    }
+
+    if (event.keyCode === 27) {
+      setUpdateID("");
+      setUpdateInput("");
+    }
+  };
+
   return (
     <ul className="todoList">
       {todos.map((todo) =>
         updateId === todo.id ? (
-          <form
-            key={todo.id}
-            onSubmit={submitHandlerForm}
-            className="updateForm"
-          >
+          <form key={todo.id} className="updateForm" onKeyDown={handleKeyDown}>
             <input
+              className="updateInput"
               type="text"
               value={updateInput}
               autoComplete="off"
               onChange={changeHandlerForm}
             />
-            <button disabled={updateInput === ""} type="submit">
-              Submit!
-            </button>
           </form>
         ) : (
           <ListItem
@@ -73,21 +74,21 @@ const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
               value={completed}
               onClick={() => clickHandlerCheckbox(todo.id)}
             />
-            <label for={todo.id} className="customCheckBox">
+            <label htmlFor={todo.id} className="customCheckBox">
               <div>
-                <i class="fa fa-check"></i>
+                <i className="fa fa-check"></i>
               </div>
             </label>
             <label className="contentTitle">{todo.content}</label>
             {todo.id === showIcons && (
               <i
-                className="fas fa-edit editIcon"
+                className="fas fa-pencil-alt editIcon controlIcon"
                 onClick={() => showUpdateForm(todo.id, todo.content)}
               ></i>
             )}
             {todo.id === showIcons && (
               <i
-                className="far fa-window-close deleteIcon"
+                className="far fa-trash-alt deleteIcon controlIcon"
                 onClick={() => deleteHandlerTodo(todo.id)}
               ></i>
             )}

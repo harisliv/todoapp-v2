@@ -51,21 +51,38 @@ function App() {
     }
   };
 
+  const itemsLeft = todos.filter((todo) => todo.completed === false).length;
+
+  const clearCompleted = () => {
+    setTodos((prev) => prev.filter((todo) => todo.completed === false));
+  };
+
+  const selectAllHandler = () => {
+    setTodos((prev) => prev.map((todo) => {
+      return {...todo, completed: true}}))
+  }
+
   return (
-    <div className="App">
-      <Form formSubmit={formSubmitHandler} />
-      <List
-        todos={filterTodos(checked)}
-        deleteTodo={deleteTodo}
-        updateTodo={updateTodo}
-        completeTodo={completeTodo}
-      />
-      <div className="footer">
-        <label className="itemsLeft footer-item">1 items left</label>
-        <Filter onChange={changeFilterHandler} checked={checked} />
-        <label className="clearCompleted footer-item">Clear completed</label>
+    <>
+      <h1 className="appTitle">Haris Liv ToDo App</h1>
+      <div className="App">
+        <i class="fas fa-sort-down selectAllIcon" onClick={selectAllHandler}></i>
+        <Form formSubmit={formSubmitHandler} />
+        <List
+          todos={filterTodos(checked)}
+          deleteTodo={deleteTodo}
+          updateTodo={updateTodo}
+          completeTodo={completeTodo}
+        />
+        <div className="footer">
+          <label className="itemsLeft">{itemsLeft} items left</label>
+          <Filter onChange={changeFilterHandler} checked={checked} />
+          <button className="clearCompleted" onClick={clearCompleted}>
+            Clear completed
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,7 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 const Form = ({formSubmit}) => {
     const [input, setInput] = useState('');
+    const inputRef = useRef('');
+
+    useEffect(() => {
+      inputRef.current.focus();
+    })
 
     const changeHandler = (event) => {
         setInput(event.target.value);
@@ -14,23 +19,16 @@ const Form = ({formSubmit}) => {
         setInput('');
     }
 
-    const handleKeyPress = (event) => {
-      if (event.keyCode === 13) {
-        submitHandler();
-      }
-    }
-
   return (
     <form className="newTodoForm" onSubmit={submitHandler}>
-      <i class="fas fa-sort-down selectAllIcon"></i>
       <input
+        ref={inputRef}
+        className="mainInput"
         type="text"
         name="main_input"
         autoComplete="off"
         value={input}
         onChange={changeHandler}
-        onKeyPress={handleKeyPress}
-        className="mainInput"
         placeholder="What needs to be done?"
       />
     </form>

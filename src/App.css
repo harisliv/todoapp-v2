@@ -4,9 +4,31 @@
   justify-content: center;
   flex-wrap: wrap;
   width: 550px;
-  /* border: 3px solid #eb0404; */
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
-  margin-top: 150px;
+  margin-bottom: 45px;
+  align-items: baseline;
+}
+
+.appTitle {
+  font-family: 'Poppins', sans-serif;
+  color: #4361ee;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+li {
+  list-style: none
+}
+
+ul {
+  padding: 0;
+}
+
+.selectAllIcon {
+  margin-left: 21px;
+  font-size: 33px;
+  color: #ef476f;
+  cursor: pointer;
 }
 
 .newTodoForm {
@@ -26,11 +48,7 @@
   margin: 0;
 }
 
-.filterTodo {
-  flex: 1 1 500px;
-}
-
-.mainInput {
+.mainInput, .updateInput {
   width: 100%;
   border: none;
   height: 50px;
@@ -39,8 +57,19 @@
   padding-left: 10px;
 }
 
-.mainInput:focus {
+.mainInput:focus, .updateInput:focus {
   outline: none;
+}
+
+.updateInput {
+  font-size: 20px;
+  box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
+  border-bottom: 1px solid #ededed;
+  padding-left: 70px;
+}
+
+.updateForm {
+  overflow: hidden;
 }
 
 .listItem {
@@ -63,28 +92,28 @@
   text-align: left;
   padding: 0 15px;
   margin: 0;
+  font-size: 20px;
 }
 
-.deleteIcon,
-.editIcon {
+.controlIcon {
   flex-basis: 10px;
   margin: 0 8px;
-  font-size: 22px;
+  font-size: 19px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
 
-.selectAllIcon {
-  flex-basis: 10px;
-  margin: 0 8px;
-  font-size: 29px;
-  margin-top: 6px;
+.controlIcon:hover {
+  color:#f9c74f;
+  transition: 0.2s ease-in-out;
 }
 
 .deleteIcon {
-  color: red;
+  color: #ef233c;
 }
 
 .editIcon {
-  color: purple;
+  color: #613dc1;
 }
 
 .customCheckBox {
@@ -97,14 +126,14 @@
   display: inline-block;
   border: 3px solid #1abc9c;
   text-align: center;
-  line-height: 20px;
+  line-height: 13px;
   margin-right: 6px;
   border-radius: 50%;
   cursor: pointer;
 }
 
 .customCheckBox i {
-  font-size: 15px;
+  font-size: 13px;
   opacity: 0;
   color: #1abc9c;
 }
@@ -120,17 +149,64 @@ input:checked + .customCheckBox i {
   font-size: 15px;
   justify-content: space-around;
   align-items: center;
-  width: 500px;
+  flex: 1 1 420px;
+  margin: 0 10px;
 }
 
-.footer-item {
+.itemsLeft {
   flex: 1;
 }
 
-.footer-item.filterTodo{
+
+.filterTodo {
   flex:3;
+  display: flex;
+  justify-content:space-evenly;
 }
 
+.filterTodo input {
+  display: none;
+}
+
+.filterTodo label {
+  border: 2px solid #90caf9;
+  padding: 2px 7px;
+  color: #90caf9;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.filterTodo label:hover {
+  color: white;
+  background-color: #90caf9;
+  transition: 0.2s ease-in-out;
+}
+
+.filterTodo input:checked + label {
+  color: white;
+  background-color: #90caf9;
+} 
+
 .clearCompleted {
-  flex:2;
+  flex:1.6;
+  border: 2px solid #ff5d8f;
+  outline: none;
+  background-color: transparent;
+  border-radius: 7px;
+  font-size: 15px;
+  padding: 1px 0px;
+  color: #ff5d8f;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.clearCompleted:hover {
+  color: white;
+  background-color: #ff5d8f;
+  transition: 0.2s ease-in-out;
+}
+
+.completed label{
+  text-decoration: line-through;
 }

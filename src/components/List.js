@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import ListItem from "./components/ListItem";
-import "./App.css";
+import React, { useState, useEffect, useRef } from "react";
+import ListItem from "../UI/ListItem";
+import "../styling/List.css";
 
 const List = ({ todos, deleteTodo, updateTodo, completeTodo }) => {
   const [updateId, setUpdateID] = useState("");

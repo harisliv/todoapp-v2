@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
+import '../styling/Form.css'
 
 const Form = ({formSubmit}) => {
     const [input, setInput] = useState('');
@@ -6,7 +7,7 @@ const Form = ({formSubmit}) => {
 
     useEffect(() => {
       inputRef.current.focus();
-    })
+    }, [])
 
     const changeHandler = (event) => {
         setInput(event.target.value);

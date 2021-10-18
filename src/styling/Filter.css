@@ -1,0 +1,30 @@
+.filterTodo {
+    padding: 15px 0;
+    flex:3;
+    display: flex;
+    justify-content:space-evenly;
+  }
+  
+  .filterTodo input {
+    display: none;
+  }
+  
+  .filterTodo label {
+    border: 2px solid #90caf9;
+    padding: 2px 7px;
+    color: #90caf9;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .filterTodo label:hover {
+    color: white;
+    background-color: #90caf9;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .filterTodo input:checked + label {
+    color: white;
+    background-color: #90caf9;
+  }

@@ -1,8 +1,9 @@
 import React from "react";
+import '../styling/Filter.css'
 
 const Filter = ({checked, onChange}) => {
   return (
-    <div className="filterTodo footer-item">
+    <div className="filterTodo">
       <input
         type="radio"
         id="all"

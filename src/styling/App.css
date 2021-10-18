@@ -1,0 +1,68 @@
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 550px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+  margin-bottom: 45px;
+  align-items: baseline;
+}
+
+.appTitle {
+  font-family: 'Poppins', sans-serif;
+  color: #4361ee;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+li {
+  list-style: none
+}
+
+ul {
+  padding: 0;
+}
+
+.selectAllIcon {
+  margin-left: 21px;
+  font-size: 33px;
+  color: #ef476f;
+  cursor: pointer;
+}
+
+.footer {
+  display: flex;
+  font-size: 15px;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1 1 420px;
+  margin: 0 10px;
+}
+
+.itemsLeft {
+  flex: 1;
+} 
+
+.clearCompleted {
+  flex:1.6;
+  border: 2px solid #ff5d8f;
+  outline: none;
+  background-color: transparent;
+  border-radius: 7px;
+  font-size: 15px;
+  padding: 1px 0px;
+  color: #ff5d8f;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.clearCompleted:hover {
+  color: white;
+  background-color: #ff5d8f;
+  transition: 0.2s ease-in-out;
+}
+
+.completed label{
+  text-decoration: line-through;
+}

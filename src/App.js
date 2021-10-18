@@ -1,12 +1,14 @@
-import { useState } from "react/cjs/react.development";
-import "./App.css";
-import Filter from "./Filter";
-import Form from "./Form";
-import List from "./List";
+import React, { useState } from "react";
+import Filter from "./components/Filter";
+import Form from "./components/Form";
+import List from "./components/List";
+import "./styling/App.css";
+import SelectIcon from "./UI/SelectIcon";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [checked, setChecked] = useState("all");
+  const [toggleSelectAllIcon, setToggleSelectAllIcon] = useState(true);
 
   const changeFilterHandler = (event) => {
     setChecked(event.target.value);
@@ -58,15 +60,23 @@ function App() {
   };
 
   const selectAllHandler = () => {
-    setTodos((prev) => prev.map((todo) => {
-      return {...todo, completed: true}}))
-  }
+    setTodos((prev) =>
+      prev.map((todo) => {
+        return { ...todo, completed: toggleSelectAllIcon };
+      })
+    );
+    setToggleSelectAllIcon(!toggleSelectAllIcon);
+  };
+
 
   return (
     <>
       <h1 className="appTitle">Haris Liv ToDo App</h1>
       <div className="App">
-        <i class="fas fa-sort-down selectAllIcon" onClick={selectAllHandler}></i>
+          <SelectIcon
+            className={toggleSelectAllIcon ? "fa-sort-down" : "fa-caret-up"}
+            onClick={selectAllHandler}
+          /> 
         <Form formSubmit={formSubmitHandler} />
         <List
           todos={filterTodos(checked)}
